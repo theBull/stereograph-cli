@@ -1,0 +1,12 @@
+{
+  "name": "boilerplate",
+  "version": "0.0.1",
+  "description": "",
+  "main": "",
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.18.13"
+  }
+}

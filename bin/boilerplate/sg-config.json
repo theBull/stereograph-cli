@@ -1,0 +1,9 @@
+{
+  "server": {
+    "start": "browser-sync start",
+    "app": "./public",
+    "port": 3200,
+    "watch": true,
+    "open": true
+  }
+}
