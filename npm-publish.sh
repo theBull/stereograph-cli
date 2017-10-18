@@ -34,8 +34,8 @@ echo 'Copying package.json to dist/...'
 cp ./package.json ./dist/package.json 
 cp ./README.md ./dist/README.md
 
-echo 'Copying bin/ to dist/...';
-cp -r ./bin ./dist/bin
+echo 'Copying bin/ to dist/ (excluding test contents)...';
+rsync -av --exclude='bin/test/' ./bin ./dist
 
 echo 'Changing directory into dist/...'
 cd ./dist
