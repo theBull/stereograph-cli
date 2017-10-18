@@ -1,8 +1,7 @@
 {
   "name": "@stereograph/cli",
   "version": "0.0.4",
-  "description": "",
-  "main": "index.js",
+  "description": "Simple Command Line Interface for creating a basic HTML development site with browser-sync support.",
   "bin": {
     "sg": "./bin/index.js"
   },
