@@ -16,5 +16,9 @@
   "devDependencies": {},
   "scripts": {},
   "author": "Danny Bullis",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/theBull/stereograph-cli.git"
+  }
 }
