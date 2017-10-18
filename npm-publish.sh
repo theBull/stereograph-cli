@@ -28,7 +28,7 @@ echo 'Updating npm package version patch...'
 npm version patch
 
 echo 'Checking for dist/ directory...'
-[ -d ./dist ] || mkdir ./dist
+[ -d ./dist ] || echo 'Creating dist/ directory...' && mkdir ./dist
 
 echo 'Copying package.json to dist/...'
 cp ./package.json ./dist/package.json 
