@@ -6,23 +6,28 @@ const program = require('commander');
 const sgNew = require('./sg-new');
 const sgServe = require('./sg-serve');
 const sgUpdate = require('./sg-update');
+const sgVersion = require('./sg-version');
 
 program
+  .usage('[options] | <cmd> [name] <options>')
   // New
   .command('new <name>', 'Creates a new project with the given name.')
   .arguments('<cmd> [name]')
-
+  
   // Serve
   .command('serve', 'Runs a development server with browser-sync')
-  .option('-p --port <port>', 'Runs the development server at the given port')
+  .option('-p, --port <port>', 'Runs the development server at the given port')
 
   // Update
   .command('update', 'Updates the global installation of @stereograph/cli with npm')
 
-  // Global options
-  .option('-d --debug', 'Runs the command in debug mode.')
-  .option('-v --verbose', 'Run the command with verbose logging')
+  // Version
+  .command('version', 'Outputs the version of @stereograph/cli')
 
+  // Global options
+  .option('-d, --debug', 'Runs the command in debug mode.')
+  .option('-V, --verbose', 'Run the command with verbose logging')
+  
   .action(function(cmd, name) {
     
     if (typeof cmd === 'undefined') {
@@ -49,6 +54,11 @@ program
       // Update
       case 'update':
         sgUpdate(program.debug, program.verbose);
+        break;
+
+      // Version
+      case 'version':
+        sgVersion();
         break;
 
       default:
