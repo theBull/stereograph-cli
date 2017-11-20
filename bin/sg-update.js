@@ -9,7 +9,7 @@ module.exports = function(debug, verbose) {
   verbose && console.log('Updating stereograph cli to latest published npm version.');
   
   shell.exec(`echo "Updating from: " && npm show @stereograph/cli version`);
-  shell.exec(`npm install -g @stereograph/cli@latest`);
+  shell.exec(`npm install -g @stereograph/cli@latest`).stdout;
   
-  verbose && console.log('Done.');
+  console.log('Done!');
 }
