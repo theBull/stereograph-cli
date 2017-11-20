@@ -3,8 +3,7 @@ const shell = require('shelljs');
 const fs = require('fs');
 const ncp = require('ncp');
 const util = require('./util');
-const test_dir = debug ? 'debug/' : '';
-const output_dir = `${output_path}/${test_dir}${name}`;
+const DEBUG_DIR = 'debug/';
 
 module.exports = function(name, debug, verbose) {
   if(!name) {
@@ -17,6 +16,8 @@ module.exports = function(name, debug, verbose) {
   console.log(`Stereograph CLI initializing new project: ${name}`);
 
   const output_path = debug ? __dirname : CWD;
+  const test_dir = debug ? DEBUG_DIR : '';
+  const output_dir = `${output_path}/${test_dir}${name}`;
 
   console.log(`Project directory: ${output_dir}`);
 
