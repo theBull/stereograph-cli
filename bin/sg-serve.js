@@ -18,7 +18,7 @@ module.exports = function(port, debug, verbose) {
     verbose && console.log(sg_config_json);
     const server_cmd = build_server_cmd(sg_config_json.server, port, verbose);
     
-    // Update package.json and run
+    // Update package.json and run...
     const package_json_file = `${CWD}/package.json`;
     verbose && console.log(`Reading package.json file to perform updates: ${package_json_file}...`);
     fs.readFile(package_json_file, 'utf8', (pjErr, pjData) => {
@@ -27,7 +27,7 @@ module.exports = function(port, debug, verbose) {
         process.exit(1);
       }
 
-      // read package.json and update script with server command
+      // read package.json and update script with server command...
       const package_json = JSON.parse(pjData);
       verbose && console.log(package_json);
       package_json.scripts.serve = server_cmd;
@@ -35,6 +35,14 @@ module.exports = function(port, debug, verbose) {
       util.overwritePackageJson(package_json_file, package_json, () => {
         verbose && shell.exec(`echo "Executing command: " ${server_cmd} ...`);
         verbose && console.log('Done.');
+
+        // --- *** ---
+        //
+        // The server run command is ready to go.
+        // Call it.
+        // This starts the server.
+        //
+        // --- *** ---
         shell.exec(`npm run serve`);
       });
     });
