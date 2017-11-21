@@ -11,8 +11,9 @@ const sgVersion = require('./sg-version');
 program
   .usage('[options] | <cmd> [name] <options>')
   // New
-  .command('new <name>', 'Creates a new project with the given name.')
+  .command('new <name>', 'Creates a new project with the given name')
   .arguments('<cmd> [name]')
+  .option('-T, --title <title>', 'Sets the title of the project with the given value')
   
   // Serve
   .command('serve', 'Runs a development server with browser-sync')
@@ -39,7 +40,7 @@ program
       
       // New
       case 'new':
-        sgNew(name, program.debug, program.verbose);
+        sgNew(name, program.title, program.debug, program.verbose);
         break;
       
       // Serve
