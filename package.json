@@ -9,12 +9,13 @@
     "co": "^4.6.0",
     "co-prompt": "^1.0.0",
     "commander": "^2.11.0",
-    "ncp": "^2.0.0",
-    "rimraf": "^2.6.2",
+    "fs-extra": "^4.0.2",
     "shelljs": "^0.7.8"
   },
   "devDependencies": {},
-  "scripts": {},
+  "scripts": {
+    "postinstall": "./bin/yarn-boilerplate.sh"
+  },
   "author": "Danny Bullis",
   "license": "MIT",
   "repository": {
