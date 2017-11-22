@@ -35,7 +35,7 @@ cp ./package.json ./dist/package.json
 cp ./README.md ./dist/README.md
 
 echo 'Copying bin/ to dist/ (excluding test contents)...';
-rsync -av --exclude='bin/test/' ./bin ./dist
+rsync -av --exclude='bin/debug/' --exclude='bin/boilerplate/node_modules' ./bin ./dist
 
 echo 'Changing directory into dist/...'
 cd ./dist
