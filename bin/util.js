@@ -11,6 +11,10 @@ module.exports = class Util {
     });
   }
 
+  static isEmptyString(value) {
+    return value === '';
+  }
+
   static isBoolean(value) {
     return value === true || value === false;
   }
