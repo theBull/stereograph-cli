@@ -11,7 +11,7 @@ module.exports = function(name, title, debug, verbose) {
     process.exit(1);
   }
 
-  const project_title = title || CONST.INDEX_TITLE_DEFAULT;
+  const project_title = title || name; //CONST.INDEX_TITLE_DEFAULT;
 
   console.log();
   console.log('-------------------------------------------------');
