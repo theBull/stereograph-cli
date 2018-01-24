@@ -7,6 +7,7 @@ cd ./bin/boilerplate
 echo 'Installing boilerplate node modules with Yarn'
 yarn
 echo 'NOTE: ensure the global yarn bin directory is added to your PATH:'
-echo '\t$ yarn global path'
+echo ''
+echo '    $ yarn global path'
 echo ''
 echo 'Ready to go!'
