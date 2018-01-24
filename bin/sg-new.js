@@ -89,6 +89,7 @@ function copy_boilerplate_to_new(name, project_title, output_dir, debug, verbose
     }
 
     verbose && console.log('Done copying boilerplate.');
+    verbose && shell.exec(`ls ${output_dir}`);
 
     // Boilerplate code has been copied over...
     // Update the package json file
