@@ -1,7 +1,7 @@
 const shell = require('shelljs');
 const CWD = process.cwd();
 const fs = require('fs');
-const util = require('./util');
+const Util = require('./util');
 const CONST = require('./sg-constants');
 
 module.exports = function(port, debug, verbose) {
