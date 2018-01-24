@@ -75,7 +75,9 @@ function copy_boilerplate_to_new(name, project_title, output_dir, debug, verbose
   verbose && console.log(`Copying boilerplate to ${output_dir}...`);
 
   // do not attempt to copy node_modules
-  fs.copy(`${__dirname}/boilerplate`, output_dir, {filter: () => true}, (err) => {
+  fs.copy(`${__dirname}/boilerplate`, output_dir, {filter: (path) => {
+    return path.indexOf('node_modules') < 0;
+  }}, (err) => {
 
     if(err) {
       console.log('An error occurred while trying to copy the boilerplate project.');
