@@ -2,8 +2,7 @@ const shell = require('shelljs');
 const CWD = process.cwd();
 const fs = require('fs');
 const util = require('./util');
-
-const DEFAULT_BROWSERSYNC_PORT = 3200;
+const CONST = require('./sg-constants');
 
 module.exports = function(port, debug, verbose) {
 
@@ -32,7 +31,7 @@ module.exports = function(port, debug, verbose) {
       verbose && console.log(package_json);
       package_json.scripts.serve = server_cmd;
       verbose && console.log('Updating package.json scripts with server start command...');
-      util.overwritePackageJson(package_json_file, package_json, () => {
+      Util.overwritePackageJson(package_json_file, package_json, () => {
         verbose && shell.exec(`echo "Executing command: " ${server_cmd} ...`);
         verbose && console.log('Done.');
 
@@ -62,7 +61,7 @@ function build_server_cmd(server_json, port, verbose) {
     process.exit(1);
   }
   if(port) {
-    if(!util.isNumber(port)) {
+    if(!Util.isNumber(port)) {
       console.error('Invalid port number: Port must be a number. Exiting...');
       process.exit(1);
     } else if(port <= 0) {
@@ -90,15 +89,15 @@ function build_server_cmd(server_json, port, verbose) {
   // OPTIONAL PROPERTIES:
   // Handle invalid / missing optional properties
   // ---
-  if(server_json.hasOwnProperty('watch') && !util.isBoolean(server_json.watch)) {
+  if(server_json.hasOwnProperty('watch') && !Util.isBoolean(server_json.watch)) {
     console.error('Invalid sg-config.json: Optional "watch" property must be a boolean value of true or false if specified in "server" property. Exiting...');
     invalid_config = true;
   }
-  if(server_json.hasOwnProperty('open') && !util.isBoolean(server_json.open)) {
+  if(server_json.hasOwnProperty('open') && !Util.isBoolean(server_json.open)) {
     console.error('Invalid sg-config.json: Optional "open" property must be a boolean value of true or false if specified in "server" property. Exiting...');
     invalid_config = true;
   }
-  if(server_json.hasOwnProperty('port') && !util.isPositive(server_json.port)) {
+  if(server_json.hasOwnProperty('port') && !Util.isPositive(server_json.port)) {
     console.error('Invalid sg-config.json: Optional "port" property must be a number (greater than zero) if specified in the "server" property. Exiting...');
     invalid_config = true;
   }
@@ -119,7 +118,7 @@ function build_server_cmd(server_json, port, verbose) {
   } else if(!server_json.hasOwnProperty('port')) {
     // use default cli-specified port if no port passed in `sg serve --port` command,
     // and if no port is specified in sg-config.json
-    server_json.port = DEFAULT_BROWSERSYNC_PORT;
+    server_json.port = CONST.DEFAULT_SERVER_PORT;
   }
 
   let cmd = server_json.start;

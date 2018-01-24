@@ -1,10 +1,7 @@
 const shell = require('shelljs');
 const fs = require('fs-extra');
-const util = require('./util');
-const DEBUG_DIR = 'debug/';
-const INDEX_HTML = 'public/index.html';
-const INDEX_TITLE_DEFAULT = 'Stereograph App';
-const INDEX_TITLE_KEY = '{{sg-title}}';
+const Util = require('./util');
+const CONST = require('./sg-constants');
 const CWD = process.cwd();
 
 module.exports = function(name, title, debug, verbose) {
@@ -14,7 +11,7 @@ module.exports = function(name, title, debug, verbose) {
     process.exit(1);
   }
 
-  const project_title = title || INDEX_TITLE_DEFAULT;
+  const project_title = title || CONST.INDEX_TITLE_DEFAULT;
 
   console.log();
   console.log('-------------------------------------------------');
@@ -29,9 +26,7 @@ module.exports = function(name, title, debug, verbose) {
   verbose && console.log(`=== VERBOSE MODE ON ===`);
   console.log();
 
-  const output_path = debug ? __dirname : CWD;
-  const test_dir = debug ? DEBUG_DIR : '';
-  const output_dir = `${output_path}/${test_dir}${name}`;
+  const output_dir = `${Util.getOutputPath(debug)}/${name}`;
 
   // ---
   //
@@ -119,7 +114,7 @@ function update_package_json(name, project_title, output_dir, debug, verbose) {
     package_json.name = name;
 
     // overwrite the boilerplate-copied package.json with updated fields
-    util.overwritePackageJson(package_json_file, package_json, () => {
+    Util.overwritePackageJson(package_json_file, package_json, () => {
       verbose && console.log('Done.');
 
       update_index_title(project_title, output_dir, verbose, () => {
@@ -138,7 +133,7 @@ function update_index_title(project_title, output_dir, verbose, callback) {
     // or update to default title value
     // ---
     if(project_title) {
-      const index_file = `${output_dir}/${INDEX_HTML}`;
+      const index_file = `${output_dir}/${CONST.INDEX_HTML}`;
       verbose && console.log(`Updating title element: ${index_file} ...`);
 
       // open and read the index.html file
@@ -150,7 +145,7 @@ function update_index_title(project_title, output_dir, verbose, callback) {
         }
 
         verbose && console.log(`Setting the title to: "${project_title}" ...`);
-        var regex = new RegExp(INDEX_TITLE_KEY, "g");
+        var regex = new RegExp(CONST.INDEX_TITLE_KEY, "g");
         var result = html_data.replace(regex, project_title);
         
         // update the title token with the given title

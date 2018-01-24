@@ -7,6 +7,7 @@ const sgNew = require('./sg-new');
 const sgServe = require('./sg-serve');
 const sgUpdate = require('./sg-update');
 const sgVersion = require('./sg-version');
+const sgDebug = require('./sg-debug');
 
 program
   .usage('[options] | <cmd> [name] <options>')
@@ -20,10 +21,13 @@ program
   .option('-p, --port <port>', 'Runs the development server at the given port')
 
   // Update
-  .command('update', 'Updates the global installation of @stereograph/cli with npm')
+  .command('update', 'Updates the global installation of Stereograph CLI with npm')
 
   // Version
-  .command('version', 'Outputs the version of @stereograph/cli')
+  .command('version', 'Outputs the version of Stereograph CLI')
+
+  // Debug
+  .command('debug', 'Change directory into the Stereograph CLI debug directory')
 
   // Global options
   .option('-d, --debug', 'Runs the command in debug mode.')
@@ -60,6 +64,11 @@ program
       // Version
       case 'version':
         sgVersion();
+        break;
+
+      // Debug
+      case 'debug':
+        sgDebug(program.verbose);
         break;
 
       default:
