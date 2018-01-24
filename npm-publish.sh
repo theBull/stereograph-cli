@@ -44,3 +44,6 @@ echo 'Publishing to NPM...'
 npm publish --access public
 
 echo 'Publish successful.'
+
+echo 'Updating global npm installation...'
+npm install -g @stereograph/cli
