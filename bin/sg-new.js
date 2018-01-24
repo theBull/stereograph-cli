@@ -76,7 +76,8 @@ function copy_boilerplate_to_new(name, project_title, output_dir, debug, verbose
 
   // do not attempt to copy node_modules
   fs.copy(`${__dirname}/boilerplate`, output_dir, {filter: (path) => {
-    return path.indexOf('node_modules') < 0;
+    console.log(`Copying: ${path}`);
+    return true; //path.indexOf('node_modules') < 0;
   }}, (err) => {
 
     if(err) {
